@@ -4,47 +4,66 @@ const hora = document.getElementById("hora");
 const min = document.getElementById("min");
 const sec = document.getElementById("sec");
 
+const body = document.getElementById('bodyy')
+
+const box = document.getElementById('notifier');
+const btt = document.getElementById('btt');
+
+
+
+
+
 let secTimer = 0;
 let minTimer = 0;
 let hourTimer = 0;
 let dayTimer = 0;
 let weekTimer = 0;
 
-function addTimerRefactor () {
+
+let sixZero = 60;
+let twoFour = 24;
+let seven = 7;
+
+
+
+
+function addTimerRefactor() {
+
+
 
     secTimer++;
 
     sec.innerHTML = formatarNumero(secTimer);
 
-    if(secTimer === 60){
+    if (secTimer === sixZero) {
 
         secTimer = 0;
         minTimer++;
 
         min.innerHTML = formatarNumero(minTimer);
 
-        if(minTimer === 60) {
+        if (minTimer === sixZero) {
 
             minTimer = 0;
             hourTimer++;
 
             hora.innerHTML = formatarNumero(hourTimer);
 
-            if(hourTimer === 24){
+            if (hourTimer === twoFour) {
 
                 hourTimer = 0;
                 dayTimer++;
 
                 day.innerHTML = formatarNumero(dayTimer)
 
-                if(dayTimer === 7){
+                if (dayTimer === seven) {
 
                     dayTimer = 0;
                     weekTimer++;
 
                     week.innerHTML = formatarNumero(weekTimer);
                 }
-                
+
             }
         }
     }
@@ -59,60 +78,32 @@ function formatarNumero(numero) {
 setInterval(addTimerRefactor, 1000);
 
 
-// Código Antigo
+btt.addEventListener('click', () => {
 
-/* function addTimer() {
-
-
-
-
-
-
-    if (secTimer < 10) {
-        sec.innerHTML = "0" + secTimer;
+    if (sixZero === 60) {
+        sixZero = 5;
+        twoFour = 5;
+        seven = 5;
     }
     else {
-        sec.innerHTML = secTimer;
+        sixZero = 60;
+        twoFour = 24;
+        seven = 7;
     }
 
-    secTimer++;
 
-    if (secTimer == 60) {
-
-        minTimer++;
-        secTimer = 0;
-
-        if (minTimer < 10) {
-            min.innerHTML = "0" + minTimer;
-        }
-        else {
-            min.innerHTML = minTimer;
-        }
+    if (box.style.backgroundColor === "red" && secTimer < 5) {
+        box.style.backgroundColor = "Green"
     }
-
-    if (minTimer == 60) {
-
-        hourTimer++;
-        minTimer = 0;
-
-        hora.innerHTML = hourTimer;
-
-        if (hourTimer < 10) {
-            hora.innerHTML = "0" + hourTimer;
-        }
-        else {
-            hora.innerHTML = hourTimer
-        }
+    else {
+        box.style.backgroundColor = "red"
     }
 
 
 
-}
 
-*/
+})
 
-
-
-
-
-
+bodyy.addEventListener('load', () => {
+    btt.click();
+})
